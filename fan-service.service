@@ -1,0 +1,7 @@
+[Unit]
+Description=Service that starts the cooler fan in accordance with the CPU temperature
+[Service]
+ExecStart=/etc/Fan-Service/start-fan-service.sh
+[Install]
+WantedBy=multi-user.target
+

@@ -1,0 +1,10 @@
+# CHANGE THE BASH SCRIPT TO AN EXECUTABLE WITH READ, WRITE, AND EXECUTION PERMISSIONS FOR ROOTsudo chmod 0700 start-fan-service.sh
+
+# CREATE A SYSTEMD SERVICE FILE
+sudo vim /etc/systemd/system/fan-service.service
+
+# START THE SERVICE
+systemctl start fan-service.service
+
+# SET THE SERVICE TO RUN AT OS STARTUP
+systemctl enable fan-service.service
