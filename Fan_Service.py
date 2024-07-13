@@ -10,23 +10,27 @@ def init_gpio():
     GPIO.setup(7, GPIO.OUT, initial=GPIO.LOW)
 
 def fan_operation():
-    start = time.time()
-    on = False
-    while(True):
-        # READ CPU TEMP
-        temp = int(os.popen("cat /sys/class/thermal/thermal_zone*/temp").read())
-        print("CPU temp:", str(temp / 1000), "C\n\n")
+    try:
+        start = time.time()
+        on = False
 
-        # IF CPU TEMP HIGHER THAN 60 DEGREES TURN THE FAN ON, ELSE TURN THE FAN OFF 
-        if temp / 1000 >= 60:
-            if time.time() - start >= 5 and on is False:
-                start = time.time()
-                GPIO.output(7, GPIO.HIGH)
-                on = True
-        elif temp / 1000 < 53:
-            GPIO.output(7, GPIO.LOW)
-            on = False
+        while(True):
+            # READ CPU TEMP
+            temp = int(os.popen("cat /sys/class/thermal/thermal_zone*/temp").read())
+            print("CPU temp:", str(temp / 1000), "C\n\n")
 
+            # IF CPU TEMP HIGHER THAN 60 DEGREES TURN THE FAN ON, ELSE TURN THE FAN OFF 
+            if temp / 1000 >= 60:
+                if time.time() - start >= 5 and on is False:
+                    start = time.time()
+                    GPIO.output(7, GPIO.HIGH)
+                    on = True
+            elif temp / 1000 < 53:
+                GPIO.output(7, GPIO.LOW)
+                on = False
+                
+    except KeyboardInterrupt:
+        pass
 
 if __name__ == "__main__":
     try:
