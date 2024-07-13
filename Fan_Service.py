@@ -23,7 +23,7 @@ def fan_operation():
                 start = time.time()
                 GPIO.output(7, GPIO.HIGH)
                 on = True
-        elif temp / 1000 < 50:
+        elif temp / 1000 < 53:
             GPIO.output(7, GPIO.LOW)
             on = False
 

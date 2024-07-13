@@ -1,4 +1,8 @@
-# CHANGE THE BASH SCRIPT TO AN EXECUTABLE WITH READ, WRITE, AND EXECUTION PERMISSIONS FOR ROOTsudo chmod 0700 start-fan-service.sh
+# INSTALL THE GPIO PACKAGE GLOBALLY
+sudo apt install python3-rpi.gpio
+
+# CHANGE THE BASH SCRIPT TO AN EXECUTABLE WITH READ, WRITE, AND EXECUTION PERMISSIONS FOR ROOT
+sudo chmod 0700 start-fan-service.sh
 
 # CREATE A SYSTEMD SERVICE FILE
 sudo vim /etc/systemd/system/fan-service.service
